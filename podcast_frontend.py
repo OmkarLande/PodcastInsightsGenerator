@@ -4,7 +4,17 @@ import json
 import os
 
 def main():
-    st.title("Newsletter Dashboard")
+    st.markdown(
+        """
+        <style>
+            *{
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                
+            }
+        </style>
+        """,unsafe_allow_html=True,
+    )
+    st.title("Podcast Insights Generator")
 
     available_podcast_info = create_dict_from_json_files('.')
 
@@ -19,8 +29,8 @@ def main():
 
         podcast_info = available_podcast_info[selected_podcast]
 
-        # Right section - Newsletter content
-        st.header("Newsletter Content")
+        # Right section - Podcast content
+        st.header("Podcast content")
 
         # Display the podcast title
         st.subheader("Episode Title")
@@ -38,7 +48,7 @@ def main():
             st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=300, use_column_width=True)
 
         # Display the five key moments
-        st.subheader("Key Moments")
+        st.subheader("Highlights")
         key_moments = podcast_info['podcast_highlights']
         for moment in key_moments.split('\n'):
             st.markdown(
@@ -56,8 +66,8 @@ def main():
         # Call the function to process the URLs and retrieve podcast guest information
         podcast_info = process_podcast_info(url)
 
-        # Right section - Newsletter content
-        st.header("Newsletter Content")
+        # Right section - Podcast content
+        st.header("Podcast content")
 
         # Display the podcast title
         st.subheader("Episode Title")
